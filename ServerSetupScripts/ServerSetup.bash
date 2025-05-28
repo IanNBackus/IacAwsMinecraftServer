@@ -47,3 +47,21 @@ printf '#!/bin/bash\nkill -9 $(ps -ef | pgrep -f "java")' >> stop
 
 #give execute permissions to the server stop file
 chmod +x stop
+
+#enter the systemd/system directory so we can setup ec2 startup behaviors
+cd /etc/systemd/system/
+
+#create the minecraft service file
+touch minecraft.service
+
+#write to the minecraft server service file
+printf '[Unit]\nDescription=Minecraft Server on start up\nWants=network-online.target\n[Service]\nUser=minecraft\nWorkingDirectory=/opt/minecraft/server\nExecStart=/opt/minecraft/server/start\nStandardInput=null\n[Install]\nWantedBy=multi-user.target' >> minecraft.service
+
+#reload systemctl with the changes
+systemctl daemon-reload
+
+#enable the minecraft service
+systemctl enable minecraft.service
+
+#start the minecraft service
+systemctl start minecraft.service
