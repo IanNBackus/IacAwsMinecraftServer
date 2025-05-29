@@ -1,67 +1,97 @@
 #!/bin/bash
 
-#become the root user to we don't need to keep typing sudo
-sudo su -
+echo "0"
+
+echo "1"
 
 #get the necessary java version
-yum install -y java-21-amazon-corretto-headless
+sudo yum install -y java-21-amazon-corretto-headless
+
+echo "2"
 
 #make a minecraft user
-adduser minecraft
+sudo adduser minecraft
+
+echo "3"
 
 #create a minecraft directory
-mkdir /opt/minecraft/
+sudo mkdir /opt/minecraft/
+
+echo "4"
 
 #create a server directory within the minecraft directory
-mkdir /opt/minecraft/server/
+sudo mkdir /opt/minecraft/server/
+
+echo "5"
 
 #enter the minecraft/server directory
 cd /opt/minecraft/server
 
 #replace this link with the server file of the minecraft version you want to use
-wget https://piston-data.mojang.com/v1/objects/e6ec2f64e6080b9b5d9b471b291c33cc7f509733/server.jar
+sudo wget https://piston-data.mojang.com/v1/objects/e6ec2f64e6080b9b5d9b471b291c33cc7f509733/server.jar
+
+echo "6"
 
 #make the minecraft user we created the owner of the minecraft directory we created
-chown -R minecraft:minecraft /opt/minecraft/
+sudo chown -R minecraft:minecraft /opt/minecraft/
 
 #run the server file
-java -Xmx1300M -Xms1300M -jar server.jar nogui
+sudo java -Xmx1300M -Xms1300M -jar server.jar nogui
+sleep 40
+
+echo "7"
 
 #agree to the eula
-sed -i 's/false/true/p' eula.txt
+sudo sed -i 's/false/true/p' eula.txt
+
+echo "8"
 
 #create server start file
-touch start
+sudo touch start
 
 #write to the start file
-printf '#!/bin/bash\njava -Xmx1300M -Xms1300M -jar server.jar nogui\n' >> start
+starttemp=$(mktemp)
+printf '#!/bin/bash\njava -Xmx1300M -Xms1300M -jar server.jar nogui\n' >> $starttemp
+sudo cp $starttemp start
 
 #give execute permissions to the server start file
-chmod +x start
+sudo chmod +x start
+sleep 1
 
 #create server stop file
-touch stop
+sudo touch stop
 
 #write to the stop file
-printf '#!/bin/bash\nkill -9 $(ps -ef | pgrep -f "java")' >> stop
+stoptemp=$(mktemp)
+printf '#!/bin/bash\nkill -9 $(ps -ef | pgrep -f "java")' >> $stoptemp
+sudo cp $stoptemp stop
 
 #give execute permissions to the server stop file
-chmod +x stop
+sudo chmod +x stop
+sleep 1
+
+echo "9"
 
 #enter the systemd/system directory so we can setup ec2 startup behaviors
 cd /etc/systemd/system/
 
 #create the minecraft service file
-touch minecraft.service
+sudo touch minecraft.service
 
-#write to the minecraft server service file
-printf '[Unit]\nDescription=Minecraft Server on start up\nWants=network-online.target\n[Service]\nUser=minecraft\nWorkingDirectory=/opt/minecraft/server\nExecStart=/opt/minecraft/server/start\nStandardInput=null\n[Install]\nWantedBy=multi-user.target' >> minecraft.service
+#edit minecraft service file the funny way since you can't sudo printf >>
+servicetemp=$(mktemp)
+printf '[Unit]\nDescription=Minecraft Server on start up\nWants=network-online.target\n[Service]\nUser=minecraft\nWorkingDirectory=/opt/minecraft/server\nExecStart=/opt/minecraft/server/start\nStandardInput=null\n[Install]\nWantedBy=multi-user.target' >> $servicetemp
+sudo cp $servicetemp minecraft.service
+
+echo "10"
 
 #reload systemctl with the changes
-systemctl daemon-reload
+sudo systemctl daemon-reload
 
 #enable the minecraft service
-systemctl enable minecraft.service
+sudo systemctl enable minecraft.service
 
 #start the minecraft service
-systemctl start minecraft.service
+sudo systemctl start minecraft.service
+
+echo "11"

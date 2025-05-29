@@ -13,6 +13,29 @@ provider "aws" {
   region = "us-west-2"
 }
 
+
+
+resource "aws_iam_role" "minecraft_iam_role" {
+  name = "minecraft_iam_role"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      },
+    ]
+  })
+}
+
+resource "aws_iam_instance_profile" "minecraft_iam_profile" {
+
+}
+
 resource "aws_security_group" "minecraft_security_group" {
   name = "Project2MinecraftSecurityGroup"
 
@@ -20,6 +43,12 @@ resource "aws_security_group" "minecraft_security_group" {
     from_port   = 25565
     to_port     = 25565
     protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = -1
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
