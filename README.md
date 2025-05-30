@@ -3,6 +3,7 @@
 This document will take you through the step-by-step process of getting your AWS-Hosted Minecraft Server up and running without manually using the AWS Management Console or manually SSH-ing into an AWS EC2 instance. 
 
 _-This tutorial assumes that you are in posession of a funded "AWS Learner Lab" account._
+
 _-This tutorial assumes that you are on a local Windows system._
 
 ## Running On Local System Guide Sections:
