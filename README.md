@@ -12,7 +12,7 @@ _-This tutorial creates a server for Minecraft version 1.21.5, edit line 16 in /
 
 ## Running On Local System Guide Sections:
 - Local Tool Requirements
-- Local Pipeline Section 1: EC2 Instance Setup/Configuration
+- Local Pipeline Section 1: EC2 Instance Setup/Configuration Via Terraform
 - Local Pipeline Section 2: Minecraft Server Setup Via AWS CLI
 
 ## >Local Tool Requirements:
@@ -36,7 +36,7 @@ region = us-west-2
 8. For your credentials file, start your AWS Learner Lab, and select "AWS Details", this will produce file contents, copy these file contents verbatim into your local credentials file. Note that with the AWS Learner Lab, you will need to do this credential copy step every time you start the lab.
 9. You should now have your tools setup.
 
-## >Local Pipeline Section 1: EC2 Instance Setup/Configuration:
+## >Local Pipeline Section 1: EC2 Instance Setup/Configuration Via Terraform:
 
 Now that we've set up our tools, we can start running our automation scripts.
 
