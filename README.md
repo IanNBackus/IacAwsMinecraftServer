@@ -6,8 +6,6 @@ _-This tutorial assumes that you are in posession of a funded "AWS Learner Lab" 
 
 _-This tutorial assumes that you are on a local Windows system._
 
-_-This tutorial creates a server for Minecraft version 1.21.5, edit line 16 in /ServerSetupScripts/ServerSetup.json to create a server for a different Minecraft version._
-
 ![](Images/PipelineOverview.png)
 
 ## Running On Local System Guide Sections:
@@ -60,7 +58,8 @@ _You will be prompted to confirm "yes" by the final command before it proceeds p
 Now that we've created our AWS resources, we need to setup the Minecraft server on them, this can be done via a small handful of AWS CLI commands using some included scripts.
 
 1. Before running our AWS CLI commands, navigate back "up" one file level into the main repo folder, then navigate down into the "ServerSetupScripts" folder.
-2. Once in the ServerSetupScripts folder, run the following command to setup your minecraft server. Be sure to replace the **"YOUR\_INSTANCE\_ID\_FROM\_EARLIER"** field with the **"minecraft\_ec2\_id"** you copied at the end of **Local Pipeline Section 1**.
+2. This tutorial creates a server for Minecraft version 1.21.5. If you wish to create a server for a different Minecraft version, edit line 16 in /ServerSetup.json to used a different server jar download link.
+3. Still in the ServerSetupScripts folder, run the following command to setup your minecraft server. Be sure to replace the **"YOUR\_INSTANCE\_ID\_FROM\_EARLIER"** field with the **"minecraft\_ec2\_id"** you copied at the end of **Local Pipeline Section 1**.
 ```
 #This will send a bash script remotely to your AWS EC2 instance which sets up your Minecraft server.
 #Please replace "YOUR_INSTANCE_ID_FROM_EARLIER" with your EC2 instance ID.
