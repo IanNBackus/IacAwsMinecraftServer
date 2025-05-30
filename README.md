@@ -6,6 +6,8 @@ _-This tutorial assumes that you are in posession of a funded "AWS Learner Lab" 
 
 _-This tutorial assumes that you are on a local Windows system._
 
+_-This tutorial creates a server for Minecraft version 1.21.5, edit line 16 in /ServerSetupScripts/ServerSetup.json to create a server for a different Minecraft version._
+
 ![](Images/PipelineOverview.png)
 
 ## Running On Local System Guide Sections:
