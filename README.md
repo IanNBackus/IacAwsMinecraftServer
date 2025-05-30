@@ -38,7 +38,7 @@ Now that we've set up our tools, we can start running our automation scripts.
 
 1. Pull down this repository to gain access to the scripts.
 2. Once pulled, open Powershell and navigate to the repository, once in the repository, navigate down into the "ProvisioningScripts" folder.
-3. Inside the "main.tf" terraform script you may edit line 13 to match the region you chose in your /.aws/config file. As stated before, my region is us-west-2.
+3. Inside the "main.tf" terraform script you may edit line 13 to match the region you chose in your local /.aws/config file. As stated before, my region is us-west-2.
 4. Once in the ProvisioningScripts folder, run the 3 following commands:
 ```
 #Intializes Terraform in the dir (installs any dependencies)
