@@ -6,6 +6,8 @@ _-This tutorial assumes that you are in posession of a funded "AWS Learner Lab" 
 
 _-This tutorial assumes that you are on a local Windows system._
 
+![](Images/PipelineOverview.png)
+
 ## Running On Local System Guide Sections:
 - Local Tool Requirements
 - Local Pipeline Section 1: EC2 Instance Setup/Configuration
