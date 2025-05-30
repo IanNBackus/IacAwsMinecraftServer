@@ -13,6 +13,7 @@ provider "aws" {
   region = "us-west-2"
 }
 
+/*
 resource "aws_iam_instance_profile" "minecraft_iam_instance_profile" {
   name = "minecraft_iam_instance_profile"
   role = aws_iam_role.minecraft_iam_role.name
@@ -39,6 +40,7 @@ resource "aws_iam_role_policy_attachment" "minecraft_policy_attachment" {
   role       = aws_iam_role.minecraft_iam_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
+*/
 
 resource "aws_security_group" "minecraft_security_group" {
   name = "Project2MinecraftSecurityGroup"
@@ -65,7 +67,7 @@ resource "aws_instance" "minecraft_server" {
   ami                    = "ami-00565a15a71e4402a"
   instance_type          = "t4g.small"
   vpc_security_group_ids = [aws_security_group.minecraft_security_group.id]
-  iam_instance_profile   = aws_iam_instance_profile.minecraft_iam_instance_profile.name
+  iam_instance_profile   = "LabInstanceProfile"
 
   tags = {
     Name = "Project2MinecraftServer"
