@@ -69,7 +69,7 @@ aws send command `
 --cli-input-json file://ServerSetup.json
 
 ```
-3. This code may take some time to boot the Minecraft server, wait approximately 2 minutes prior to trying to connect. Once you're ready to connect, use the **"minecraft\_public\_ip"** value you copied at the end of **Local Pipeline Section 1**. From now on, your server will automatically boot whenever the EC2 instance starts.
+3. This code may take some time to boot the Minecraft server, wait approximately 2 minutes prior to trying to connect. Once you're ready to connect, use the **"minecraft\_public\_ip"** value you copied at the end of **Local Pipeline Section 1** and paste it into the "Direct Connection" multiplayer field within Minecraft Java Edition 1.21.5 to join the server. From now on, your server will automatically boot whenever the EC2 instance starts.
 
 # References
 This guide takes inspiration from the following helpful sources:
