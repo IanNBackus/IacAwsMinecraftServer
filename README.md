@@ -75,3 +75,4 @@ aws ssm send-command `
 This guide takes inspiration from the following helpful sources:
 - [Setting up a Minecraft Java server on Amazon EC2](https://aws.amazon.com/blogs/gametech/setting-up-a-minecraft-java-server-on-amazon-ec2/)
 - [Terraform Docs and Tutorials](https://developer.hashicorp.com/terraform/docs)
+- [AWS CLI Docs and Tutorials](https://docs.aws.amazon.com/systems-manager/latest/userguide/walkthrough-cli.html)
