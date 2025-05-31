@@ -63,7 +63,7 @@ Now that we've created our AWS resources, we need to setup the Minecraft server 
 ```
 #This will send a bash script remotely to your AWS EC2 instance which sets up your Minecraft server.
 #Please replace "YOUR_INSTANCE_ID_FROM_EARLIER" with your EC2 instance ID.
-aws ssm send command `
+aws ssm send-command `
 --document-name "AWS-RunShellScript" `
 --targets "Key=InstanceIds,Values=YOUR_INSTANCE_ID_FROM_EARLIER" `
 --cli-input-json file://ServerSetup.json
